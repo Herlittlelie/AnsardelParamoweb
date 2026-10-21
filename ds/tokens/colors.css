@@ -1,0 +1,42 @@
+:root {
+  /* ── Brand palette ── */
+  --color-violet-deep:   #51375B;
+  --color-violet-blue:   #5A3598;
+  --color-violet-pastel: #AE9ABB;
+  --color-moss:          #768340;
+  --color-black:         #060409;
+  --color-warm-white:    #F5F0F7;
+  --color-white:         #FFFFFF;
+
+  /* ── Illustrative accent colors (logo feathers only) ── */
+  --color-logo-magenta:  #C4235C;
+  --color-logo-orange:   #E8853A;
+  --color-logo-blue:     #2B60A6;
+  --color-logo-navy:     #1E2D6B;
+
+  /* ── Semantic surfaces ── */
+  --surface-primary:     var(--color-black);
+  --surface-card:        #0E0A12;
+  --surface-elevated:    #17101E;
+  --surface-warm:        #2A1E30;
+  --surface-light:       var(--color-warm-white);
+
+  /* ── Semantic text ── */
+  --text-primary:        var(--color-warm-white);
+  --text-secondary:      var(--color-violet-pastel);
+  --text-muted:          rgba(174, 154, 187, 0.55);
+  --text-on-light:       var(--color-black);
+  --text-accent:         var(--color-moss);
+
+  /* ── Interactive ── */
+  --accent-primary:      var(--color-violet-blue);
+  --accent-primary-hover:#6B45B0;
+  --accent-secondary:    var(--color-violet-deep);
+  --accent-moss:         var(--color-moss);
+  --accent-moss-hover:   #8A9A4C;
+
+  /* ── Borders ── */
+  --border-subtle:       rgba(174, 154, 187, 0.18);
+  --border-medium:       rgba(174, 154, 187, 0.35);
+  --border-strong:       var(--color-violet-pastel);
+}

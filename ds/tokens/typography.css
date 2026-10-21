@@ -1,0 +1,44 @@
+:root {
+  /* ── Font families ── */
+  --font-display: 'EB Garamond', 'Garamond', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-accent:  'Playfair Display', 'Bodoni MT', Georgia, serif;
+
+  /* ── Display scale (Garamond) ── */
+  --text-display-xl:  72px;
+  --text-display-lg:  56px;
+  --text-display-md:  48px;
+  --text-display-sm:  36px;
+  --text-display-xs:  28px;
+
+  /* ── Accent scale (Playfair / Bodoni) ── */
+  --text-accent-lg:   32px;
+  --text-accent-md:   26px;
+  --text-accent-sm:   20px;
+
+  /* ── Body scale (Inter) ── */
+  --text-body-lg:     18px;
+  --text-body-md:     16px;
+  --text-body-sm:     14px;
+  --text-body-xs:     12px;
+
+  /* ── Leading ── */
+  --leading-tight:    1.15;
+  --leading-snug:     1.35;
+  --leading-normal:   1.6;
+  --leading-relaxed:  1.75;
+
+  /* ── Tracking ── */
+  --tracking-tight:   -0.02em;
+  --tracking-normal:   0;
+  --tracking-wide:     0.05em;
+  --tracking-wider:    0.1em;
+  --tracking-widest:   0.2em;
+
+  /* ── Weight ── */
+  --weight-light:     300;
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+}
