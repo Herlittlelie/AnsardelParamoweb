@@ -1,0 +1,11 @@
+// Configuración del sitio en Cloudflare Workers (sitio estático, sin código de servidor).
+// No hace falta tocar este archivo para actualizar conciertos ni música.
+{
+  "name": "ansardelparamoweb",
+  "compatibility_date": "2026-10-19",
+  // Todos los archivos del repo se publican tal cual, salvo los de .assetsignore.
+  "assets": { "directory": "." },
+  "observability": { "enabled": true },
+  // Habilita las vistas previas de cada rama (npx wrangler preview).
+  "previews": {}
+}
