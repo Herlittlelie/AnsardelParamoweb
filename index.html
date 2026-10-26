@@ -100,6 +100,9 @@
       <img src="ds/assets/logo-white.png" alt="Ansar del Páramo" style="width:min(100%,380px);height:auto;display:block;">
       <p style="font-family:var(--font-accent);font-style:italic;font-size:22px;color:var(--color-violet-pastel);line-height:1.5;margin:0;text-wrap:pretty;">Guitarra, clarinete, viola y tres voces.</p>
       <div style="display:flex;flex-wrap:wrap;justify-content:{{ heroAlign }};gap:12px;">
+        <sc-if value="{{ hasNextTickets }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="AnsarDelPRamo_b0efe9.Button" variant="accent" size="lg" href="{{ nextTicketsUrl }}" dc-props="{{ bAccent }}" hint-size="auto,52px">Comprar entradas</x-import>
+        </sc-if>
         <x-import component-from-global-scope="AnsarDelPRamo_b0efe9.Button" variant="primary" size="lg" on-click="{{ openListen }}" dc-props="{{ bPrimary }}" hint-size="auto,52px">Escuchar</x-import>
         <x-import component-from-global-scope="AnsarDelPRamo_b0efe9.Button" variant="secondary" size="lg" href="https://wa.me/573178228710?text=Hola%20Ansar%20del%20P%C3%A1ramo%2C%20quiero%20cotizar%20un%20evento.%0A%0ANombre%3A%20%0AFecha%3A%20%0ACiudad%3A%20%0ATipo%20de%20evento%3A%20" dc-props="{{ bSecondary }}" hint-size="auto,52px"><span style="display:inline-flex;align-items:center;gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path></svg><span>Cotiza tu evento</span></span></x-import>
       </div>
@@ -300,6 +303,9 @@
                     <p style="font-family:var(--font-display);font-size:19px;font-weight:600;color:#F5F0F7;margin:0;">{{ c.name }}</p>
                     <p style="font-family:var(--font-body);font-size:13px;color:var(--color-violet-pastel);margin:2px 0 0;">{{ c.place }}</p>
                   </div>
+                  <sc-if value="{{ c.hasTickets }}" hint-placeholder-val="{{ false }}">
+                    <x-import component-from-global-scope="AnsarDelPRamo_b0efe9.Button" variant="primary" size="sm" href="{{ c.tickets }}" dc-props="{{ bPrimary }}" hint-size="auto,36px">Comprar entrada</x-import>
+                  </sc-if>
                 </div>
               </sc-for>
               <sc-if value="{{ noUpcoming }}" hint-placeholder-val="{{ true }}">
@@ -468,7 +474,7 @@ class Component extends DCLogic {
       if (!m) return;
       const y = +m[1], mo = m[2] ? +m[2] - 1 : null, d = m[3] ? +m[3] : null;
       const sort = new Date(y, mo ?? 11, d ?? 28).getTime();
-      const item = { name: c.nombre, place: c.lugar, sort,
+      const item = { name: c.nombre, place: c.lugar, sort, tickets: c.entradas || '', hasTickets: !!c.entradas,
         day: d ?? '', month: mo != null ? MES[mo] : '', year: y,
         label: d ? d + ' ' + MES[mo] + ' ' + y : mo != null ? MES[mo] + ' ' + y : String(y) };
       const exact = new Date(y, mo ?? 0, d ?? 1);
@@ -534,6 +540,7 @@ class Component extends DCLogic {
       videos: vids, releases,
       spotifyUrl: p.spotifyUrl || 'https://open.spotify.com/intl-es/artist/3NcMu9o4wpKRY5DMR89V6C',
       upcoming: cs.up, past: cs.past, noUpcoming: cs.up.length === 0,
+      ...(() => { const t = cs.up.find(c => c.hasTickets); return { hasNextTickets: !!t, nextTicketsUrl: t ? t.tickets : '' }; })(),
       ...this.btn(),
       navActual: nav === 'Actual', navFlotante: nav === 'Flotante', navCentrada: nav === 'Centrada',
       mob: this.state.mob, desk: !this.state.mob,

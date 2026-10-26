@@ -55,6 +55,15 @@ Así se ve cada concierto:
   - fecha completa `"2026-12-05"`, **obligatoria para las próximas fechas**
   - solo el año `"2024"`, para conciertos pasados cuando no recuerdan el día
 
+### Botón de entradas (opcional)
+Si un concierto vende entradas, agréguenle `entradas` con el link de compra:
+
+```js
+  { nombre: "La Ruta · Lanzamiento", lugar: "Teatro Aleph, Pasto", fecha: "2026-11-14", entradas: "https://wa.me/573113346169?text=Hola%2C%20quiero%20mi%20entrada%20para%20La%20Ruta" },
+```
+
+Mientras la fecha no haya pasado, sale el botón **Comprar entrada** en *Próximas fechas* y **Comprar entradas** en la portada. Cuando pasa la fecha, los dos botones desaparecen solos.
+
 ### La página ordena todo sola
 - Si la fecha es **hoy o más adelante**, el concierto aparece en **Próximas fechas**.
 - Si la fecha **ya pasó**, se mueve solo a **Conciertos realizados**. No hay que hacer nada.
